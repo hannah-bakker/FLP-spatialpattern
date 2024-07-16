@@ -1,4 +1,4 @@
-# FLP-spatialpattern
+# Spatial Patterns Underlying Facility Location Problems: Visualization and Classification
 
 ## Description
 The code provided 
