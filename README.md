@@ -13,7 +13,6 @@ The code allows visualizing spatial point patterns underlying facility location 
 - InferSpatial.py: Class to classify spatial point patterns based on retrieved coordinates.
 - LICENSE.md: 
 - README.md
-- 
 
 ## Authors
 - Hannah Bakker
