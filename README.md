@@ -29,7 +29,7 @@ Running [InferSpatial.py](InferSpatial.py) on the above spatial point pattern wi
 
 ![Convex Hull spatial point pattern - cap131 ORLIB instances](plots/example_convex_hull.png)
 
-## Cite or reference 
+## Reference 
 Bakker, H., & Nickel, S. (2024). Spatial Patterns Underlying Facility Location Problems: Visualization and Classification (v1.1). Zenodo. [https://doi.org/10.5281/zenodo.12771297](https://doi.org/10.5281/zenodo.12771297)
 
 ## Authors
