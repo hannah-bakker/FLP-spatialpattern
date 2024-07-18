@@ -18,6 +18,9 @@ The code allows visualizing spatial point patterns underlying facility location 
 ## Example 
 ![Spatial point pattern - cap131 ORLIB instances](plots/example.png)
 
+![Convex Hull spatial point pattern - cap131 ORLIB instances](plots/example_convex_hull.png)
+
+
 ## Authors
 - Hannah Bakker
 - Stefan Nickel
