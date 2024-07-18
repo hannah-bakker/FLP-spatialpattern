@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-@author: hannah.bakker@kit.edu / 
+@author: hannah.bakker@kit.edu / stefan.nickel@kit.edu
 @date: 16.07.2024
 """
 
@@ -11,15 +11,15 @@ import matplotlib.pyplot as plt
 
 class GetCoordinates:
     """
-        Get coordinates in a 2 dimensional plane approximating the distance
-        relationships between candidates and customers in a facility location
+        Get coordinates in a 2-dimensional plane approximating the spatial distribution of
+        candidates and customers in a facility location
         problem that are representative of the distance relationships implied
         by the transportation matrix.
         
         Primarily to be used on benchmark instances for which real-coordinates
         are not available. Can, however, also be useful if real-world distances 
-        do not adhere to euclidean distances as the visualization allows to 
-        perceive the relative distance between points.
+        do not adhere to Euclidean distances as the visualization allows apprehending
+        the relative distance between points.
     """
     
     def __init__(self, d_ij, complete_distance_matrix = False,):
