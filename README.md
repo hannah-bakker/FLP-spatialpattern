@@ -16,6 +16,9 @@ The code allows visualizing spatial point patterns underlying facility location 
 - README.md
 
 ## Example 
+
+The file data/example.json contains the transport cost matrix from instance cap131 from the ORLIB cap dataset available under [https://people.brunel.ac.uk/~mastjjb/jeb/orlib/capinfo.html](https://people.brunel.ac.uk/~mastjjb/jeb/orlib/capinfo.html)
+
 ![Spatial point pattern - cap131 ORLIB instances](plots/example.png)
 
 ![Convex Hull spatial point pattern - cap131 ORLIB instances](plots/example_convex_hull.png)
