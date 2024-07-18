@@ -12,8 +12,9 @@ The code allows visualizing spatial point patterns underlying facility location 
 - GitHub_SpatialPointPatterns.pdf: Explanation of theoretical ideas underlying the code.
 - GetCoordinates.py: Class to generate coordinates via multi-dimensional scaling. 
 - InferSpatial.py: Class to classify spatial point patterns based on retrieved coordinates.
-- LICENSE.md: 
+- LICENSE.md 
 - README.md
 
 ## Authors
 - Hannah Bakker
+- Stefan Nickel
