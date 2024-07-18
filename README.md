@@ -17,9 +17,13 @@ The code allows visualizing spatial point patterns underlying facility location 
 
 ## Example 
 
-The file data/example.json contains the transport cost matrix from instance cap131 from the ORLIB cap dataset available under [https://people.brunel.ac.uk/~mastjjb/jeb/orlib/capinfo.html](https://people.brunel.ac.uk/~mastjjb/jeb/orlib/capinfo.html)
+The file [data/example.json](data/example.json) contains the transport cost matrix from instance cap131 from the ORLIB cap dataset available under [https://people.brunel.ac.uk/~mastjjb/jeb/orlib/capinfo.html](https://people.brunel.ac.uk/~mastjjb/jeb/orlib/capinfo.html)
+
+Running [GetCoordinates.py](GetCoordinates.py) will provide you with coordinates producing the spatial point pattern below: 
 
 ![Spatial point pattern - cap131 ORLIB instances](plots/example.png)
+
+Running [InferSpatial.py](InferSpatial.py) on the above spatial point pattern will classify the underlying spatial point pattern in the area of the convex hull as clustered, indicating that the average nearest neighbor distance is less than what would be expected if the points were distributed randomly. 
 
 ![Convex Hull spatial point pattern - cap131 ORLIB instances](plots/example_convex_hull.png)
 
