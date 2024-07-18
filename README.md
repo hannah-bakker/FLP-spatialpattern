@@ -17,7 +17,7 @@ The code allows visualizing spatial point patterns underlying facility location 
 
 ## Example 
 
-The file [data/example.json](data/example.json) contains the transport cost matrix from instance cap131 from the ORLIB cap dataset available under [https://people.brunel.ac.uk/~mastjjb/jeb/orlib/capinfo.html](https://people.brunel.ac.uk/~mastjjb/jeb/orlib/capinfo.html)
+The file [data/example.json](data/example.json) contains the transport cost matrix from instance *cap131* from the ORLIB cap dataset available under [https://people.brunel.ac.uk/~mastjjb/jeb/orlib/capinfo.html](https://people.brunel.ac.uk/~mastjjb/jeb/orlib/capinfo.html)
 
 Running [GetCoordinates.py](GetCoordinates.py) will provide you with coordinates producing the spatial point pattern below: 
 
