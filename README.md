@@ -15,6 +15,9 @@ The code allows visualizing spatial point patterns underlying facility location 
 - LICENSE.md 
 - README.md
 
+## Example 
+![Spatial point pattern - cap131 ORLIB instances](plots/example.png)
+
 ## Authors
 - Hannah Bakker
 - Stefan Nickel
