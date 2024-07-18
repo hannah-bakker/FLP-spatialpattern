@@ -23,7 +23,9 @@ Running [GetCoordinates.py](GetCoordinates.py) will provide you with coordinates
 
 ![Spatial point pattern - cap131 ORLIB instances](plots/example.png)
 
-Running [InferSpatial.py](InferSpatial.py) on the above spatial point pattern will classify the underlying spatial point pattern in the area of the convex hull as clustered, indicating that the average nearest neighbor distance is less than what would be expected if the points were distributed randomly. 
+*Notice, that the data set was original based on a US dataset and that the spatial distribution of the points resembles the distribution of cities on a US map. However, be aware that the procedure's output is not unique, and different random states will produce different results.*
+
+Running [InferSpatial.py](InferSpatial.py) on the above spatial point pattern will classify the underlying spatial point pattern in the area of the convex hull as **clustered**, indicating that the average nearest neighbor distance is less than what would be expected if the points were distributed randomly. 
 
 ![Convex Hull spatial point pattern - cap131 ORLIB instances](plots/example_convex_hull.png)
 
