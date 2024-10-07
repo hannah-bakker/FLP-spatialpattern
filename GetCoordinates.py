@@ -35,10 +35,10 @@ class GetCoordinates:
         if self.check_type(d_ij, complete_distance_matrix): #check type
             self.d = d_ij.T # as there are usually more customers than candidates, 
                             # consider those as "samples" (thus, transpose)
-                  
             # retrieve dimensions
-            self.I = np.shape(self.d)[0]
-            self.J = np.shape(self.d)[1]
+            self.I = np.shape(self.d)[1]
+            self.J = np.shape(self.d)[0]
+            
             
             #infer potentially missing values
             if not complete_distance_matrix:
@@ -104,6 +104,7 @@ class GetCoordinates:
                 dist_ii[i,i_prime] = (UB+LB)/2
         np.fill_diagonal(dist_ii, 0) # estimation might not arrive at 0 for each 
                                      # point to itself
+        print(dist_ii)
         self.d = np.concatenate([self.d, dist_ii])
 
         
@@ -186,7 +187,7 @@ class GetCoordinates:
    
   
 if __name__ == "__main__":
-    # Example - cost matrix from cap41-74 from ORLIB CFLP insantance
+    # Example - cost matrix from cap134 from ORLIB CFLP insantance
     data = json.load(open("data/example.json"))
     d = np.asarray(data["c_ij"])
     
