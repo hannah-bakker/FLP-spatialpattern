@@ -6,9 +6,11 @@ The code allows visualizing spatial point patterns underlying facility location 
 ## Files
 - data:
   - example.json: transport cost matrix from cap131 instance from ORLIB data set
+  - capa1.json: transport cost matrix from capa1 instance from ORLIB data set
 - plots:
-  - example.png: spatial point pattern estimated with GetCoordinates.py
+  - example.png: spatial point pattern estimated with GetCoordinates.py for example.json
   - example_convex_hull.png: Convex hull used to approximate the area for the hypothesis test on the underlying spatial pattern used in InferSpatial.py
+  - capa1.png: spatial point pattern estimated with GetCoordinates.py for capa1.json
 - GitHub_SpatialPointPatterns.pdf: Explanation of theoretical ideas underlying the code.
 - GetCoordinates.py: Class to generate coordinates via multi-dimensional scaling. 
 - InferSpatial.py: Class to classify spatial point patterns based on retrieved coordinates.
