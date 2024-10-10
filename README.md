@@ -12,11 +12,12 @@ The code allows visualizing spatial point patterns underlying facility location 
   - example.png: spatial point pattern estimated with GetCoordinates.py for example.json
   - example_convex_hull.png: Convex hull used to approximate the area for the hypothesis test on the underlying spatial pattern used in InferSpatial.py
   - capa1.png: spatial point pattern estimated with GetCoordinates.py for capa1.json
-  - YAN-2012: plots for 20 benchmark instances presented in 
-  - DEL-1991: plots for 57 benchmark instances presented in *Delmaire, H. and Diaz, J. A. and Fernandez, E. and Ortega, M.: Reactive Grasp And Tabu Search Based Heuristics For The Single Source Capacitated Plant                 Location Problem. INFOR: Information Systems and Operational Research 37(3):194—225 (1999). doi:10.1080/03155986.1999.11732381*
-  - HOL-1999: plots for 71 benchmark instances presented in 
-  - BEA-1989-s: plots for 36 small benchmark instances presented in 
-  - BEA-1989-l: plots for 12 large benchmark instances presented in 
+  - YAN-2012: plots for 20 benchmark instances presented in *Yang, Z. and Chu, F. and Chen, H.: A cut-and-solve based algorithm for the single-source capacitated facility location problem.
+European Journal of Operational Research 221(3):521—532 (2012).*
+  - DEL-1991: plots for 57 benchmark instances presented in *Delmaire, H. and Diaz, J. A. and Fernandez, E. and Ortega, M.: Reactive Grasp And Tabu Search Based Heuristics For The Single Source Capacitated Plan Location Problem. INFOR: Information Systems and Operational Research 37(3):194—225 (1999).*
+  - HOL-1999: plots for 71 benchmark instances presented in *Holmberg, K. and R¨onnqvist, M. and Yuan, D.: An exact algorithm European Journal of Operational Research 113(3):544-–559 (1999). *
+  - BEA-1989-s: plots for 36 small benchmark instances and 
+  - BEA-1989-l: plots for 12 large benchmark instances presented in *Beasley, J. E.: OR-Library: Distributing Test Problems by Electronic Mail. Journal of the Operational Research Society 41(11):1069—1072 (1990).*
 - GitHub_SpatialPointPatterns.pdf: Explanation of theoretical ideas underlying the code.
 - GetCoordinates.py: Class to generate coordinates via multi-dimensional scaling. 
 - InferSpatial.py: Class to classify spatial point patterns based on retrieved coordinates.
