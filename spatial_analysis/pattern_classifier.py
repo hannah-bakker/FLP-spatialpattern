@@ -1,66 +1,74 @@
 """
+pattern_classifier.py
+
 Spatial pattern classification module for 2D point sets.
 
-Provides statistical classification based on nearest-neighbor distances
-compared to complete spatial randomness (CSR).
+Classifies observed spatial patterns (e.g., facility or demand point layouts)
+as 'clustered', 'random', or 'even' based on nearest-neighbor distances
+compared to the expectation under complete spatial randomness (CSR).
 """
 
 import numpy as np
 from scipy.spatial import ConvexHull
 from scipy.spatial.distance import cdist
-import scipy.stats as stats
+from scipy.stats import norm
 
-def infer_spatial(coord: np.ndarray, confidence_level: float = 0.99) -> dict:
+
+def infer_spatial_pattern(coord: np.ndarray, confidence_level: float = 0.99) -> dict:
     """
-    Classifies the spatial pattern of a given set of 2D coordinates as
-    'clustered', 'random', or 'even', based on nearest neighbor distances
-    and comparison to a theoretical expectation.
+    Classify the spatial pattern of a 2D point set based on nearest-neighbor analysis.
+
+    Compares the observed average nearest-neighbor distance to the theoretical expectation
+    under complete spatial randomness (CSR) using a z-score test.
 
     Parameters
     ----------
     coord : np.ndarray
-        A (n x 2) array of 2D coordinates (e.g., facility or demand points).
+        A (n_points x 2) array of 2D coordinates (e.g., facilities or demand points).
     confidence_level : float, optional
-        Confidence level (between 0 and 1) to determine the threshold
-        for classification. Default is 0.99.
+        Confidence level for the hypothesis test, must be in (0, 1). Default is 0.99.
 
     Returns
     -------
     dict
-        A dictionary with keys:
-        - "pattern": str, one of {'clustered', 'random', 'even'}
-        - "z_score": float, test statistic
-        - "z_limit": float, critical value threshold
+        A dictionary containing:
+        - "pattern": str, one of {"clustered", "random", "even"}
+        - "z_score": float, the standardized test statistic
+        - "z_limit": float, critical value for rejection region
+
+    Raises
+    ------
+    ValueError
+        If inputs are malformed or confidence level is invalid.
     """
-    
     if not isinstance(coord, np.ndarray) or coord.ndim != 2 or coord.shape[1] != 2:
         raise ValueError("coord must be a 2D NumPy array with shape (n_points, 2).")
+
     if not (0 < confidence_level < 1):
-        raise ValueError("confidence_level must be in the interval (0, 1).")
+        raise ValueError("confidence_level must be between 0 and 1 (exclusive).")
 
-    z_limit = retrieve_confidence_bounds(confidence_level)
-    
+    n = coord.shape[0]
+    z_limit = get_z_limit(confidence_level)
+
+    # Estimate area via convex hull
     hull = ConvexHull(coord)
-    area = hull.volume  # For 2D, .volume returns area
+    area = hull.volume  # For 2D, volume == area
 
-    # Compute pairwise distance matrix
+    # Pairwise distances excluding self-distances
     distance_matrix = cdist(coord, coord)
-    np.fill_diagonal(distance_matrix, np.inf)  # Ignore self-distance
+    np.fill_diagonal(distance_matrix, np.inf)
+    nearest_distances = np.min(distance_matrix, axis=1)
 
-    # Compute nearest neighbor distances
-    nearest_neighbor_distances = np.min(distance_matrix, axis=1)
-            
-    D_o = np.mean(nearest_neighbor_distances)
-    D_E = 0.5 / np.sqrt(coord.shape[0] / area)
+    # Observed and expected distances
+    D_obs = np.mean(nearest_distances)
+    D_exp = 0.5 / np.sqrt(n / area)
+    SE = 0.26136 / np.sqrt(n**2 / area)
+    z_score = (D_obs - D_exp) / SE
 
-    z_numerator = D_o - D_E
-    z_denominator = 0.26136 / np.sqrt((coord.shape[0] ** 2) / area)
-    z_score = z_numerator / z_denominator
-
-    # Classify pattern based on z-score
-    if z_score < z_limit:
+    # Classification based on z-score
+    if z_score < -z_limit:
         pattern = "clustered"
-    elif z_score > -z_limit:
+    elif z_score > z_limit:
         pattern = "even"
     else:
         pattern = "random"
@@ -71,24 +79,29 @@ def infer_spatial(coord: np.ndarray, confidence_level: float = 0.99) -> dict:
         "z_limit": z_limit
     }
 
-def retrieve_confidence_bounds(confidence_level: float) -> float:
+
+def get_z_limit(confidence_level: float) -> float:
     """
-    Returns the lower (negative) quantile z-value for a given confidence level 
-    based on the standard normal distribution.
+    Compute the two-sided critical z-value for a given confidence level.
 
-    Parameters:
-        confidence_level (float): Confidence level between 0 and 1 (e.g., 0.95 for 95%).
+    Parameters
+    ----------
+    confidence_level : float
+        The desired confidence level in (0, 1), e.g. 0.95 or 0.99.
 
-    Returns:
-        float: The z-score corresponding to the lower tail (i.e., -z_{1 - α/2}) 
-               of the confidence interval.
-    
-    Raises:
-        ValueError: If confidence_level is not in the open interval (0, 1).
+    Returns
+    -------
+    float
+        The positive critical z-score such that P(|Z| > z) = alpha.
+        (The lower threshold is -z, and upper is +z.)
+
+    Raises
+    ------
+    ValueError
+        If confidence_level is outside (0, 1).
     """
     if not (0 < confidence_level < 1):
         raise ValueError("confidence_level must be between 0 and 1 (exclusive).")
-    
+
     alpha = 1 - confidence_level
-    return stats.norm.ppf(alpha / 2)
-    
+    return norm.ppf(1 - alpha / 2)
